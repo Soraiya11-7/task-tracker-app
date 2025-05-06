@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
 import TaskModal from "./components/TaskModal";
+import TaskList from "./components/TaskList";
 
 
 function App() {
@@ -24,25 +25,39 @@ function App() {
   };
 
   const [showModal, setShowModal] = useState(false);
-  
+
+  //finished task.....
+  const handleComplete = (id) => {
+    console.log(id);
+  };
+
+
+
+  //delete task.....
+  const handleDelete = (id) => {
+    console.log(id);
+  };
+
   return (
     <>
-    <Navbar openModal={() => setShowModal(true)}></Navbar>
-      <div className="min-h-[calc(100vh-124px)] ">
-      <h1 className='bg-sky-300 text-center'>Task Tracker</h1>
-      </div>
+      <Navbar openModal={() => setShowModal(true)}></Navbar>
+
+      <main className="min-h-[calc(100vh-124px)] bg-slate-50 ">
+        <TaskList tasks={tasks} onComplete={handleComplete} onDelete={handleDelete} />
+      </main>
+
       <Footer></Footer>
       {/* Modal */}
-      {showModal && 
-       <TaskModal
-        closeModal={() => setShowModal(false)}
-        onAddTask={handleAddTask}
-      />
+      {showModal &&
+        <TaskModal
+          closeModal={() => setShowModal(false)}
+          onAddTask={handleAddTask}
+        />
       }
-    
+
     </>
-   
+
   )
 }
 
-export default App
+export default App;
