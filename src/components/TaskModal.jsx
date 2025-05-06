@@ -5,12 +5,23 @@ import Swal from "sweetalert2";
 const TaskModal = ({ closeModal, onAddTask }) => {
   const { register, handleSubmit, reset, formState: { errors }} = useForm();
 
+  const formatDate = (dateObj) => {
+    return dateObj.toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  };
+  
+  
   const onSubmit = (data) => {
+    const currentDate = formatDate(new Date());
 
     const task = {
       id: Date.now(),
       title: data.title,
       description: data.description,
+      date: currentDate,
       completed: false,
     };
 
