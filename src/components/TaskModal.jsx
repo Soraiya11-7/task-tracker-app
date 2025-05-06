@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const TaskModal = ({ closeModal, onAddTask }) => {
   const { register, handleSubmit, reset, formState: { errors }} = useForm();
@@ -16,6 +17,14 @@ const TaskModal = ({ closeModal, onAddTask }) => {
     onAddTask(task);
     reset();
     closeModal();
+
+      // Show success alert..........
+      Swal.fire({
+        icon: 'success',
+        title: 'Task Added',
+        text: 'Your task has been successfully added!',
+        confirmButtonColor: '#3085d6',
+      });
   };
 
   return (
