@@ -5,7 +5,7 @@ import { FaListAlt, FaCheckCircle } from 'react-icons/fa';
 const TaskList = ({ tasks, onComplete, onDelete }) => {
     
     const totalTasks = tasks.length;
-    const completedTasks = 0;
+    const completedTasks = tasks.filter(task => task.completed).length;;
 
     return (
         <section className="py-6 w-[95%] mx-auto">
@@ -33,44 +33,51 @@ const TaskList = ({ tasks, onComplete, onDelete }) => {
 
             {/* Task List................................................. */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {tasks.map(task => (
-                    <div
-                        key={task.id}
-                        className="bg-slate-100 p-5 rounded-lg transform transition duration-300 hover:scale-105 shadow-[3px_3px_0px_0px_#050c2a,6px_6px_0px_0px_#050c2a]"
+    {tasks.length === 0 ? (
+        <div className="col-span-full text-center mt-5">
+            <p className="text-lg text-gray-500">No tasks available. Please add a new task.</p>
+        </div>
+    ) : (
+        tasks.map(task => (
+            <div
+                key={task.id}
+                className="bg-slate-100 p-5 rounded-lg transform transition duration-300 hover:scale-105 shadow-[3px_3px_0px_0px_#050c2a,6px_6px_0px_0px_#050c2a]"
+            >
+                {/* Title.............. */}
+                <h3 className={`text-lg md:text-xl font-semibold ${task.completed ? 'line-through text-gray-500' : ''}`}>
+                    {task.title}
+                </h3>
+                {/* Desc................... */}
+                <p className={`text-xs md:text-sm ${task.completed ? 'line-through text-gray-400' : ''}`}>
+                    {task.description}
+                </p>
+
+                {/* Action btn.......................... */}
+                <div className="flex justify-between items-center mt-6 -mb-3">
+                    <button
+                        onClick={() => onComplete(task.id)}
+                        disabled={task.completed}
+                        className={`text-sm px-3 py-1.5 rounded transition font-semibold ${task.completed
+                                ? 'bg-gray-300 text-gray-700 cursor-not-allowed'
+                                : 'bg-[#111a42] hover:bg-green-600 text-white'
+                            }`}
                     >
-                        {/* Title.............. */}
-                        <h3 className={`text-lg md:text-xl font-semibold ${task.completed ? 'line-through text-gray-500' : ''}`}>
-                            {task.title}
-                        </h3>
-                        {/* Desc................... */}
-                        <p className={`text-xs md:text-sm ${task.completed ? 'line-through text-gray-400' : ''}`}>
-                            {task.description}
-                        </p>
+                        {task.completed ? 'Completed' : 'Complete'}
+                    </button>
 
-                        {/* Action btn.......................... */}
-                        <div className="flex justify-between items-center mt-6 -mb-3">
-                            <button
-                                onClick={() => onComplete(task.id)}
-                                disabled={task.completed}
-                                className={`text-sm px-3 py-1.5 rounded transition font-semibold ${task.completed
-                                        ? 'bg-gray-300 text-gray-700 cursor-not-allowed'
-                                        : 'bg-[#111a42] hover:bg-green-600 text-white'
-                                    }`}
-                            >
-                                {task.completed ? 'Completed' : 'Complete'}
-                            </button>
-
-                            <button
-                                onClick={() => onDelete(task.id)}
-                                className="text-red-500 hover:text-red-700 text-xl transition"
-                                title="Delete Task"
-                            >
-                                <FiTrash2 />
-                            </button>
-                        </div>
-                    </div>
-                ))}
+                    <button
+                        onClick={() => onDelete(task.id)}
+                        className="text-red-500 hover:text-red-700 text-xl transition"
+                        title="Delete Task"
+                    >
+                        <FiTrash2 />
+                    </button>
+                </div>
             </div>
+        ))
+    )}
+</div>
+
         </section>
     );
 };

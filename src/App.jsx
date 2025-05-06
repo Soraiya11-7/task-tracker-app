@@ -27,11 +27,13 @@ function App() {
 
   const [showModal, setShowModal] = useState(false);
 
+
   //finished task.....
   const handleComplete = (id) => {
-    console.log(id);
+    const updatedTasks = tasks.map((task) => 
+        task.id === id ? { ...task, completed: true } : task);
+    setTasks(updatedTasks);
   };
-
 
 
   //delete task.....
