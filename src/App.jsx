@@ -3,6 +3,7 @@ import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
 import TaskModal from "./components/TaskModal";
 import TaskList from "./components/TaskList";
+import Swal from "sweetalert2";
 
 
 function App() {
@@ -35,8 +36,24 @@ function App() {
 
   //delete task.....
   const handleDelete = (id) => {
-    console.log(id);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This task will be permanently deleted!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Remove task from the list in localStorage.........
+        const updatedTasks = tasks.filter((task) => task.id !== id);
+        setTasks(updatedTasks);
+
+        Swal.fire('Deleted!', 'The task has been deleted.', 'success');
+      }
+    });
   };
+
 
   return (
     <>
