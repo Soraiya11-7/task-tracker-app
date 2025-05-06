@@ -1,8 +1,7 @@
-
-import React from "react";
 import { MdOutlineAddTask } from "react-icons/md";
 
-const Navbar = () => {
+const Navbar = ({openModal}) => {
+
   return (
     <nav className="bg-[#050c2a] text-white shadow-md">
       <div className="w-[90%] mx-auto container py-4 flex flex-row items-center justify-between">
@@ -11,12 +10,13 @@ const Navbar = () => {
         <div className="flex items-center space-x-2 mb-2 sm:mb-0">
        
           <div className="text-xl md:text-2xl font-bold"><MdOutlineAddTask /></div>
-          <span className="text-lg md:text-xl font-semibold">TaskSuite</span>
+          <span className="text-lg md:text-2xl font-bold">TaskSuite</span>
         </div>
 
         {/* Right side..........................(Add Task Button) */}
         <div>
         <button
+         onClick={openModal}
           className="bg-white text-[#3263ba] text-sm md:text-base hover:bg-[#F9DEC9] px-2 py-1 md:px-4 md:py-2 rounded shadow transition"
         >
           + Add New Task
@@ -24,6 +24,8 @@ const Navbar = () => {
         </div>
        
       </div>
+       
+
     </nav>
   );
 };
