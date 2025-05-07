@@ -82,7 +82,7 @@ npm run dev
 
 ### 🚀 Live URL
 
-  - Netlify: [TaskSuite](https://task-suite.netlify.app/)
+  - Netlify: [TaskTracker](https://task-suite.netlify.app/)
 
 
 🔗 GitHub Repository: [Link](https://github.com/Soraiya11-7/task-tracker-app)

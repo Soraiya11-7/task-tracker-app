@@ -11,7 +11,7 @@ const TaskList = ({ tasks, onComplete, onDelete }) => {
         <section className="py-8 w-[95%] mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">All Tasks</h2>
 
-            {/* Stats Cards................... */}
+            {/* Stats Cards...................................................... */}
             <div className="flex justify-center gap-4 flex-wrap mb-8">
 
                 {/* Total Task............... */}
@@ -41,13 +41,13 @@ const TaskList = ({ tasks, onComplete, onDelete }) => {
                     tasks.map(task => (
                         <div
                             key={task.id}
-                            className="bg-slate-100 p-5 rounded-lg transform transition duration-300 hover:scale-105 shadow-[3px_3px_0px_0px_#050c2a,6px_6px_0px_0px_#050c2a]"
+                            className="relative bg-slate-100 p-5 rounded-lg transform transition duration-300 hover:scale-105 shadow-[3px_3px_0px_0px_#050c2a,6px_6px_0px_0px_#050c2a] min-h-[170px]"
                         >
                             {/* Title.............. */}
                             <h3 className={`text-lg md:text-xl font-semibold ${task.completed ? 'line-through text-gray-500' : ''}`}>
                                 {task.title}
                             </h3>
-                            {/* Desc................... */}
+                            {/* Description................... */}
                             <p className={`text-xs md:text-sm ${task.completed ? 'line-through text-gray-400' : ''}`}>
                                 {task.description}
                             </p>
@@ -59,7 +59,7 @@ const TaskList = ({ tasks, onComplete, onDelete }) => {
                             </div>
 
                             {/* Action btn.......................... */}
-                            <div className="flex justify-between items-center mt-6 -mb-3">
+                            <div className="flex justify-between items-center absolute bottom-2 left-5 right-5 ">
                                 <button
                                     onClick={() => onComplete(task.id)}
                                     disabled={task.completed}

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
 const TaskModal = ({ closeModal, onAddTask }) => {
-  const { register, handleSubmit, reset, formState: { errors }} = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const formatDate = (dateObj) => {
     return dateObj.toLocaleDateString('en-US', {
@@ -12,8 +12,8 @@ const TaskModal = ({ closeModal, onAddTask }) => {
       year: 'numeric'
     });
   };
-  
-  
+
+
   const onSubmit = (data) => {
     const currentDate = formatDate(new Date());
 
@@ -29,13 +29,13 @@ const TaskModal = ({ closeModal, onAddTask }) => {
     reset();
     closeModal();
 
-      // Show success alert..........
-      Swal.fire({
-        icon: 'success',
-        title: 'Task Added',
-        text: 'Your task has been successfully added!',
-        confirmButtonColor: '#3085d6',
-      });
+    // Show success alert..........
+    Swal.fire({
+      icon: 'success',
+      title: 'Task Added',
+      text: 'Your task has been successfully added!',
+      confirmButtonColor: '#3085d6',
+    });
   };
 
   return (
@@ -64,7 +64,7 @@ const TaskModal = ({ closeModal, onAddTask }) => {
         <div className="relative">
           <textarea
             {...register("description", { required: "Task description is required" })}
-            
+
             className="w-full border border-gray-400 rounded-md px-3 pt-5 pb-2  focus:outline-none focus:border-blue-600"
             placeholder=" "
           ></textarea>
